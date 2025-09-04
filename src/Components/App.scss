@@ -1,0 +1,50 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.sidebar {
+    max-width: 240px;
+    height: 100vh;
+    background-color: #132450;
+
+    display: flex;
+    justify-content: flex-end;
+
+    .sidebar__content {
+        width: 90%;
+        height: 100%;
+    }
+}
+
+.sidebar__toggle {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+        margin-right: 20px;
+        margin-top: 12px;
+
+        border: none;
+        cursor: pointer;
+        outline: none;
+
+        background-color: transparent;
+        color: #ffffff80;
+
+        img {
+            width: 30px;
+            height: 30px;
+        }
+    }
+}
+
+.logo {
+    margin-top: 13px;
+
+    img {
+        width: 140px;
+        height: 60px;
+    }
+}
