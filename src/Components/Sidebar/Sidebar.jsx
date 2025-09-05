@@ -1,3 +1,5 @@
+import Navigation from "./Navigation.jsx";
+
 import "./Sidebar.scss";
 import { useState, useEffect } from "react";
 
@@ -39,6 +41,8 @@ function Sidebar() {
                         </button>
                     </div>
                 </div>
+
+                <Navigation />
             </div>
         </aside>
     );
