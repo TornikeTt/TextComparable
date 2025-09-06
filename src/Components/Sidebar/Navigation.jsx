@@ -8,7 +8,7 @@ import {
     PdfConvert,
 } from "./svg";
 
-function Navigation() {
+function Navigation({ collapsedStyles }) {
     const [activeItem, setActiveItem] = useState("SpellingCheck");
 
     const navItems = [
@@ -62,15 +62,17 @@ function Navigation() {
                             key={id}
                             data-id={id}
                             className={isActive ? "active" : ""}
+                            style={collapsedStyles.li}
                         >
                             <a
                                 href={href}
                                 className={isActive ? "active-for-text" : ""}
+                                style={collapsedStyles.a}
                             >
                                 <Icon
                                     color={isActive ? "#132450" : "#FFFFFF"}
                                 />
-                                {label}
+                                <p style={collapsedStyles.p}>{label}</p>
                             </a>
                         </li>
                     );

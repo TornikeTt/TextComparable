@@ -5,6 +5,8 @@
 
     display: flex;
     justify-content: flex-end;
+
+    transition: all 0.5s;
 }
 
 .sidebar__content {
@@ -21,10 +23,15 @@
 
     .logo {
         margin-top: 45px;
+        margin-left: 8px;
 
-        img {
-            width: 109px;
-            height: 43px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        h1 {
+            font-size: 15px;
+            color: #ffffff;
         }
     }
 
@@ -82,7 +89,6 @@ nav {
     }
 
     .active {
-        color: red;
         background-color: #ffffff;
         border-top-left-radius: 29px;
         border-bottom-left-radius: 29px;
@@ -105,12 +111,8 @@ nav {
 
         .logo {
             margin-top: 0px;
+            margin-left: 0px;
             padding-left: 30px;
-
-            img {
-                width: 109px;
-                height: 43px;
-            }
         }
 
         .sidebar__toggle {
