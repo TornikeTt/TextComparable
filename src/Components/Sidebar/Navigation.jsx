@@ -1,4 +1,5 @@
 import { useState } from "react";
+import clsx from "clsx";
 
 import {
     CorrectSpelling,
@@ -8,7 +9,7 @@ import {
     PdfConvert,
 } from "./svg";
 
-function Navigation({ collapsedStyles }) {
+function Navigation({ collapsedStyles, isSidebarActive }) {
     const [activeItem, setActiveItem] = useState("SpellingCheck");
 
     const navItems = [
@@ -57,11 +58,17 @@ function Navigation({ collapsedStyles }) {
             <ul onClick={handleClick}>
                 {navItems.map(({ id, href, label, icon: Icon }) => {
                     const isActive = activeItem === id;
+
+                    const listItemClass = clsx({
+                        active: isActive && isSidebarActive,
+                        sidebar_Collapsed_active: isActive && !isSidebarActive,
+                    });
+
                     return (
                         <li
                             key={id}
                             data-id={id}
-                            className={isActive ? "active" : ""}
+                            className={listItemClass}
                             style={collapsedStyles.li}
                         >
                             <a

@@ -92,6 +92,42 @@ nav {
         background-color: #ffffff;
         border-top-left-radius: 29px;
         border-bottom-left-radius: 29px;
+
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+
+            width: 16px;
+            height: 10px;
+
+            background-color: white;
+
+            top: -5px;
+            right: -8px;
+            transform: rotate(-50deg);
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+
+            width: 16px;
+            height: 10px;
+
+            background-color: white;
+
+            bottom: -5px;
+            right: -8px;
+            transform: rotate(50deg);
+        }
+    }
+
+    .sidebar_Collapsed_active {
+        background-color: #ffffff;
+        border-top-left-radius: 29px;
+        border-bottom-left-radius: 29px;
     }
 }
 
