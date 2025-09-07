@@ -158,4 +158,64 @@ nav {
             padding-right: 30px;
         }
     }
+
+    .dropDown-container {
+        width: 100%;
+        height: 72px;
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: 0;
+            background-color: #ededed;
+        }
+
+        .dropDown {
+            user-select: none; /* disables selecting text */
+            position: absolute;
+            top: 30%;
+            left: 30px;
+
+            z-index: 100;
+            width: 200px;
+
+            transition: all 0.1s;
+
+            .current-item {
+                width: 100%;
+                cursor: pointer;
+
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                p {
+                    font-family: Helvetica, sans-serif;
+                    font-weight: 700;
+                }
+            }
+
+            .option {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+
+                li {
+                    height: 40px;
+                    cursor: pointer;
+                    list-style-type: none;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    &:hover {
+                        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                    }
+                }
+            }
+        }
+    }
 }

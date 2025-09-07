@@ -111,6 +111,7 @@ function Sidebar() {
                     collapsedStyles={sidebarCollapsedStyles.sidebar_header_style()}
                 />
                 <Navigation
+                    isWideScreen={isWideScreen}
                     isSidebarActive={isSidebarActive}
                     collapsedStyles={sidebarCollapsedStyles.sidebar_navigation_style()}
                 />

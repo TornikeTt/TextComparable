@@ -1,3 +1,5 @@
+import Dropdown from "./Dropdown";
+
 import { useState } from "react";
 import clsx from "clsx";
 
@@ -9,7 +11,7 @@ import {
     PdfConvert,
 } from "./svg";
 
-function Navigation({ collapsedStyles, isSidebarActive }) {
+function Navigation({ isWideScreen, collapsedStyles, isSidebarActive }) {
     const [activeItem, setActiveItem] = useState("SpellingCheck");
 
     const navItems = [
@@ -54,38 +56,53 @@ function Navigation({ collapsedStyles, isSidebarActive }) {
     };
 
     return (
-        <nav>
-            <ul onClick={handleClick}>
-                {navItems.map(({ id, href, label, icon: Icon }) => {
-                    const isActive = activeItem === id;
+        <>
+            {isWideScreen ? (
+                <nav>
+                    <ul onClick={handleClick}>
+                        {navItems.map(({ id, href, label, icon: Icon }) => {
+                            const isActive = activeItem === id;
 
-                    const listItemClass = clsx({
-                        active: isActive && isSidebarActive,
-                        sidebar_Collapsed_active: isActive && !isSidebarActive,
-                    });
+                            const listItemClass = clsx({
+                                active: isActive && isSidebarActive,
+                                sidebar_Collapsed_active:
+                                    isActive && !isSidebarActive,
+                            });
 
-                    return (
-                        <li
-                            key={id}
-                            data-id={id}
-                            className={listItemClass}
-                            style={collapsedStyles.li}
-                        >
-                            <a
-                                href={href}
-                                className={isActive ? "active-for-text" : ""}
-                                style={collapsedStyles.a}
-                            >
-                                <Icon
-                                    color={isActive ? "#132450" : "#FFFFFF"}
-                                />
-                                <p style={collapsedStyles.p}>{label}</p>
-                            </a>
-                        </li>
-                    );
-                })}
-            </ul>
-        </nav>
+                            return (
+                                <li
+                                    key={id}
+                                    data-id={id}
+                                    className={listItemClass}
+                                    style={collapsedStyles.li}
+                                >
+                                    <a
+                                        href={href}
+                                        className={
+                                            isActive ? "active-for-text" : ""
+                                        }
+                                        style={collapsedStyles.a}
+                                    >
+                                        <Icon
+                                            color={
+                                                isActive ? "#132450" : "#FFFFFF"
+                                            }
+                                        />
+                                        <p style={collapsedStyles.p}>{label}</p>
+                                    </a>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </nav>
+            ) : (
+                <Dropdown
+                    handleClick={handleClick}
+                    navItems={navItems}
+                    activeItem={activeItem}
+                />
+            )}
+        </>
     );
 }
 

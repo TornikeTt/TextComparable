@@ -4,7 +4,9 @@ import menu from "../../assets/menu.png";
 
 function Header({ isWideScreen, setIsSidebarActive, collapsedStyles }) {
     const handleToggle = () => {
-        setIsSidebarActive((prev) => !prev);
+        if (isWideScreen) {
+            setIsSidebarActive((prev) => !prev);
+        }
     };
 
     return (
