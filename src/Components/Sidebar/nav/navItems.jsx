@@ -1,0 +1,42 @@
+import {
+    CorrectSpelling,
+    SpellingCheck,
+    SpeechTotext,
+    TextTospeech,
+    PdfConvert,
+} from "../svg";
+
+const navItems = [
+    {
+        id: "CorrectSpelling",
+        href: "/correct-spelling",
+        label: "მართლწერი",
+        icon: CorrectSpelling,
+    },
+    {
+        id: "SpellingCheck",
+        href: "/spelling-check",
+        label: "ტექსტის შედარება",
+        icon: SpellingCheck,
+    },
+    {
+        id: "SpeechTotext",
+        href: "/speech-to-text",
+        label: "ხმა ტექსტი",
+        icon: SpeechTotext,
+    },
+    {
+        id: "TextTospeech",
+        href: "/text-to-speech",
+        label: "ტექსტი ხმა",
+        icon: TextTospeech,
+    },
+    {
+        id: "PdfConvert",
+        href: "/pdf-convert",
+        label: "PDF კონვერტაცია",
+        icon: PdfConvert,
+    },
+];
+
+export { navItems };

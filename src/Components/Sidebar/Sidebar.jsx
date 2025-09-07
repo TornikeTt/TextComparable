@@ -1,4 +1,4 @@
-import Navigation from "./Navigation.jsx";
+import Navigation from "./nav/Navigation.jsx";
 import Header from "./Header.jsx";
 import "./Sidebar.scss";
 
