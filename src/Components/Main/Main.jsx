@@ -1,6 +1,7 @@
 import "./Main.scss";
 
 import newFileIcon from "../../assets/new-file-icon.png";
+import bidirectionalArrow from "../../assets/bidirectional arrow.png";
 
 function Main() {
     return (
@@ -24,7 +25,13 @@ function Main() {
                 </button>
             </div>
 
-            <div className="compareText_container"></div>
+            <div className="compareText_container">
+                <textarea placeholder="დაიწყე წერა..."></textarea>
+                <img src={bidirectionalArrow} />
+                <textarea placeholder="დაიწყე წერა..."></textarea>
+            </div>
+
+            <button className="compear_button">შედარება</button>
         </main>
     );
 }
