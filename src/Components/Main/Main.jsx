@@ -1,6 +1,6 @@
 import "./Main.scss";
 
-import group from "../../assets/group.png";
+import newFileIcon from "../../assets/new-file-icon.png";
 
 function Main() {
     return (
@@ -19,10 +19,12 @@ function Main() {
                 </div>
 
                 <button className="new-form">
-                    <img src={group} alt="Group" />
+                    <img src={newFileIcon} alt="Add new file" />
                     <span>ახლის გახსნა</span>
                 </button>
             </div>
+
+            <div className="compareText_container"></div>
         </main>
     );
 }
