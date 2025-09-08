@@ -24,7 +24,7 @@ function Sidebar() {
             if (isSidebarActive || !isWideScreen) {
                 return {};
             } else {
-                return { maxWidth: "70px" };
+                return { width: "70px" };
             }
         },
 

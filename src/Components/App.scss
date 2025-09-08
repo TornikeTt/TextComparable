@@ -3,3 +3,14 @@
     margin: 0px;
     box-sizing: border-box;
 }
+
+.page {
+    display: flex;
+    gap: 20px;
+}
+
+@media (max-width: 800px) {
+    .page {
+        flex-direction: column;
+    }
+}
