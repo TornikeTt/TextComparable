@@ -109,6 +109,32 @@ main {
         resize: none;
 
         font-size: 18px;
+
+        overflow: auto;
+    }
+
+    div {
+        font-family: Helvetica, sans-serif;
+        padding: 12px;
+        background-color: #f0f7ff;
+
+        flex: 1;
+        height: 100%;
+        font-size: 18px;
+        overflow: auto;
+
+        white-space: pre-wrap;
+
+        .textComparison--deleted {
+            background-color: red;
+            transition: background-color 0.3s ease;
+        }
+
+        .textComparison--added {
+            background-color: green;
+
+            transition: background-color 0.3s ease;
+        }
     }
 }
 
@@ -123,6 +149,11 @@ main {
     color: white;
 
     margin: 10px auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
 
 @media (max-width: 800px) {
