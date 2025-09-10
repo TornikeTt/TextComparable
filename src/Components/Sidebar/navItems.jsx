@@ -4,6 +4,7 @@ import {
     SpeechTotext,
     TextTospeech,
     PdfConvert,
+    ArrowRight,
 } from "./svg";
 
 const navItems = [
@@ -24,12 +25,14 @@ const navItems = [
         href: "/speech-to-text",
         label: "ხმა ტექსტი",
         icon: SpeechTotext,
+        arrowRight: ArrowRight,
     },
     {
         id: "TextTospeech",
         href: "/text-to-speech",
         label: "ტექსტი ხმა",
         icon: TextTospeech,
+        arrowRight: ArrowRight,
     },
     {
         id: "PdfConvert",

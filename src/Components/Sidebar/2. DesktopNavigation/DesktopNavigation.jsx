@@ -14,7 +14,15 @@ function DesktopNavigation({
             {isWideScreen && (
                 <nav>
                     <ul>
-                        {navItems.map(({ id, href, label, icon: Icon }) => {
+                        {navItems.map((props) => {
+                            const {
+                                id,
+                                href,
+                                label,
+                                icon: Icon,
+                                arrowRight: ArrowRight,
+                            } = props;
+
                             const isActive = currentNav === id;
 
                             const li_style = clsx({
@@ -28,6 +36,30 @@ function DesktopNavigation({
                                 active_for_text: isActive,
                                 a_collapsed: collapsed,
                             });
+
+                            const newlabel = () => {
+                                const arrow = ArrowRight && (
+                                    <ArrowRight
+                                        color={isActive ? "#132450" : "#FFFFFF"}
+                                    />
+                                );
+
+                                if (arrow) {
+                                    const parts = label.split(" ");
+                                    return (
+                                        <span
+                                            style={{
+                                                display: "inline-flex",
+                                                alignItems: "center",
+                                                gap: "4px",
+                                            }}
+                                        >
+                                            {parts[0]} {arrow} {parts[1]}
+                                        </span>
+                                    );
+                                }
+                                return label;
+                            };
 
                             return (
                                 <li
@@ -43,11 +75,11 @@ function DesktopNavigation({
                                             }
                                         />
                                         <p
-                                            className={
-                                                collapsed ? "p_collapes" : ""
-                                            }
+                                            className={clsx(
+                                                collapsed && "p_collapes"
+                                            )}
                                         >
-                                            {label}
+                                            {newlabel()}
                                         </p>
                                     </a>
                                 </li>
