@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import Header from "./1. Header/Header.jsx";
 import DesktopNavigation from "./2. DesktopNavigation/DesktopNavigation.jsx";
+import Profile from "./3. Profile/Profile.jsx";
 import MobileNavigation from "./DropdownMenu/MobileNavigation.jsx";
 
 import { navItems } from "./navItems.jsx";
@@ -75,6 +76,10 @@ function Sidebar() {
                         collapsed={collapsed}
                     />
                 </div>
+                <Profile
+                    isSidebarExpanded={isSidebarExpanded}
+                    isWideScreen={isWideScreen}
+                />
             </div>
             <div className="MobileSideBar">
                 <MobileNavigation
