@@ -32,3 +32,8 @@ Here are some screenshots of the app:
 ![Desktop View](./screenshots/1.png)  
 ![Desktop View](./screenshots/2.png)  
 ![Mobile View](./screenshots/3.png)
+
+## 🌐 Live Site
+
+Check out the live version of the app:  
+[Text Comparison Web App](https://velvety-travesseiro-0624be.netlify.app/)
