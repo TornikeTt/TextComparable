@@ -1,14 +1,25 @@
-import Navigation from "./nav/Navigation.jsx";
-import Header from "./Header.jsx";
-import "./Sidebar.scss";
-
 import { useState, useEffect } from "react";
 
+import Header from "./1. Header/Header.jsx";
+import DesktopNavigation from "./2. DesktopNavigation/DesktopNavigation.jsx";
+import MobileNavigation from "./DropdownMenu/MobileNavigation.jsx";
+
+import { navItems } from "./navItems.jsx";
+import "./Sidebar.scss";
+
 function Sidebar() {
-    const [isSidebarActive, setIsSidebarActive] = useState(true);
+    const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
     const [isWideScreen, setIsWideScreen] = useState(
         document.documentElement.clientWidth > 800
     );
+    const [currentNav, setCurrentNav] = useState("SpellingCheck");
+
+    const collapsed = !isSidebarExpanded && isWideScreen;
+
+    const handleNavItemClick = (e, id) => {
+        e.preventDefault();
+        setCurrentNav(id);
+    };
 
     useEffect(() => {
         const handleResize = () => {
@@ -21,15 +32,15 @@ function Sidebar() {
 
     const sidebarCollapsedStyles = {
         aside_style: () => {
-            if (isSidebarActive || !isWideScreen) {
+            if (isSidebarExpanded || !isWideScreen) {
                 return {};
             } else {
                 return { width: "70px" };
             }
         },
 
-        sidebar_content_style: () => {
-            if (isSidebarActive || !isWideScreen) {
+        DesktopSideBar_content_style: () => {
+            if (isSidebarExpanded || !isWideScreen) {
                 return {};
             } else {
                 return {
@@ -40,80 +51,36 @@ function Sidebar() {
                 };
             }
         },
-
-        sidebar_header_style: () => {
-            if (isSidebarActive || !isWideScreen) {
-                return {};
-            } else {
-                return {
-                    header: {
-                        marginTop: "20px",
-
-                        flexDirection: "column",
-                        alignItems: "center",
-                        gap: "10px",
-                    },
-
-                    logo: {
-                        marginTop: 0,
-                        marginLeft: 0,
-                    },
-
-                    h1: {
-                        display: "none",
-                    },
-
-                    sidebar_toggle: {
-                        marginTop: 0,
-                        marginRight: 0,
-                    },
-
-                    button: {
-                        transform: "rotate(180deg)",
-                    },
-                };
-            }
-        },
-
-        sidebar_navigation_style: () => {
-            if (isSidebarActive || !isWideScreen) {
-                return {};
-            } else {
-                return {
-                    a: {
-                        paddingLeft: 0,
-                    },
-
-                    li: {
-                        width: "50px",
-                        height: "50px",
-                        justifyContent: "center",
-                        borderRadius: "100%",
-                    },
-
-                    p: {
-                        display: "none",
-                    },
-                };
-            }
-        },
     };
 
     return (
         <aside className="sidebar" style={sidebarCollapsedStyles.aside_style()}>
-            <div
-                className="sidebar__content"
-                style={sidebarCollapsedStyles.sidebar_content_style()}
-            >
-                <Header
-                    isWideScreen={isWideScreen}
-                    setIsSidebarActive={setIsSidebarActive}
-                    collapsedStyles={sidebarCollapsedStyles.sidebar_header_style()}
-                />
-                <Navigation
-                    isWideScreen={isWideScreen}
-                    isSidebarActive={isSidebarActive}
-                    collapsedStyles={sidebarCollapsedStyles.sidebar_navigation_style()}
+            <div className="DesktopSideBar">
+                <div
+                    className="DesktopSideBar_content"
+                    style={sidebarCollapsedStyles.DesktopSideBar_content_style()}
+                >
+                    <Header
+                        setIsSidebarExpanded={setIsSidebarExpanded}
+                        isWideScreen={isWideScreen}
+                        collapsed={collapsed}
+                    />
+
+                    <DesktopNavigation
+                        isSidebarExpanded={isSidebarExpanded}
+                        isWideScreen={isWideScreen}
+                        currentNav={currentNav}
+                        navItems={navItems}
+                        handleNavItemClick={handleNavItemClick}
+                        collapsed={collapsed}
+                    />
+                </div>
+            </div>
+            <div className="MobileSideBar">
+                <MobileNavigation
+                    currentNav={currentNav}
+                    navItems={navItems}
+                    handleNavItemClick={handleNavItemClick}
                 />
             </div>
         </aside>

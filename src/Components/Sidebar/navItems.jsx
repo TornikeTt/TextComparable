@@ -4,7 +4,7 @@ import {
     SpeechTotext,
     TextTospeech,
     PdfConvert,
-} from "../svg";
+} from "./svg";
 
 const navItems = [
     {

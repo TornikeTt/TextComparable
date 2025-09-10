@@ -1,0 +1,94 @@
+nav {
+    margin-top: 32px;
+
+    ul {
+        list-style-type: none;
+        font-family: Helvetica, sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    a {
+        padding-left: 15px;
+
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+
+        text-decoration: none;
+        color: #ffffff;
+    }
+
+    li {
+        height: 52px;
+
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+    }
+}
+
+/*  
+    Styles for sidebar navigation items, 
+    applied dynamically via React based on state  or events
+*/
+.li_collapsed {
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+
+    border-radius: 100%;
+}
+
+.active_for_text {
+    color: #132450;
+}
+
+.a_collapsed {
+    padding-left: 0px;
+}
+
+.p_collapes {
+    display: none;
+}
+
+.active {
+    background-color: #ffffff;
+    border-top-left-radius: 29px;
+    border-bottom-left-radius: 29px;
+
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+
+        width: 16px;
+        height: 10px;
+
+        background-color: white;
+
+        top: -5px;
+        right: -8px;
+        transform: rotate(-50deg);
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+
+        width: 16px;
+        height: 10px;
+
+        background-color: white;
+
+        bottom: -5px;
+        right: -8px;
+        transform: rotate(50deg);
+    }
+}
+
+.sidebar_Collapsed_active {
+    background-color: #ffffff;
+}
