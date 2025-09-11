@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { diffChars } from "diff";
-import clsx from "clsx";
+import { compareAndHighlight } from "./compareAndHighlight";
 
 import newComparisonIcon from "../../assets/new-file-icon.png";
 import comparisonArrowIcon from "../../assets/bidirectional arrow.png";
@@ -19,36 +18,14 @@ function Main() {
     const handleCompare = () => {
         setIsCompared(text1.length > 0 && text2.length > 0);
 
-        const diffParts = diffChars(text1, text2);
+        if (!text1 && !text2) {
+            return;
+        } else {
+            const { first, second } = compareAndHighlight(text1, text2);
 
-        const text1Spans = [];
-        const text2Spans = [];
-
-        diffParts.forEach((diffPart, index) => {
-            const spanElement = (
-                <span
-                    key={index}
-                    className={clsx({
-                        "textComparison--added": diffPart.added,
-                        "textComparison--deleted": diffPart.removed,
-                    })}
-                >
-                    {diffPart.value}
-                </span>
-            );
-
-            if (diffPart.added) {
-                text2Spans.push(spanElement);
-            } else if (diffPart.removed) {
-                text1Spans.push(spanElement);
-            } else {
-                text1Spans.push(spanElement);
-                text2Spans.push(spanElement);
-            }
-        });
-
-        setHighlightedText1(text1Spans);
-        setHighlightedText2(text2Spans);
+            setHighlightedText1(first);
+            setHighlightedText2(second);
+        }
     };
 
     const reset = () => {
