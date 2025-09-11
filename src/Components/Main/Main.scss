@@ -136,6 +136,117 @@ main {
     }
 }
 
+.loading-container {
+    width: 100%;
+    height: 80%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .loading {
+        width: 300px;
+        height: 100px;
+        border-radius: 8px;
+        border: 1px solid #e1e1e1;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .loading-circle {
+        width: 36px;
+        height: 36px;
+        border: 1px solid #4571e4;
+        border-radius: 100%;
+
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background-color: #4571e4;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        // first ripple
+        &::after {
+            content: "";
+            position: absolute;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background-color: #4571e4;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            animation: pulse 1s ease-out infinite;
+        }
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.8;
+        }
+        50% {
+            opacity: 0.4;
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(3); // grows outward
+            opacity: 0;
+        }
+    }
+
+    .loading-state {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        small {
+            color: #383a4899;
+            font-size: 14px;
+        }
+
+        .progress {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            p {
+                font-size: 16px;
+                font-weight: bold;
+                color: #383a48;
+            }
+
+            .loading-line {
+                overflow: hidden;
+                flex: 1;
+                height: 10px;
+                background-color: #f6f9ff;
+                border-radius: 50px;
+                position: relative;
+
+                .loading-fill {
+                    height: 100%;
+                    background-color: #4571e4;
+                    border-radius: 50px;
+                    transition: width 0.3s ease; // smooth animation
+                    width: 0; // initial width
+                }
+            }
+        }
+    }
+}
+
 .compareButton {
     border: none;
     background-color: #4571e4;
@@ -166,6 +277,10 @@ main {
             width: 100%;
             height: 432px;
         }
+    }
+
+    .loading-container {
+        height: 300px;
     }
 }
 

@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { compareAndHighlight } from "./compareAndHighlight";
+import Loading from "./Loading";
 
 import newComparisonIcon from "../../assets/new-file-icon.png";
 import comparisonArrowIcon from "../../assets/bidirectional arrow.png";
@@ -11,12 +12,16 @@ function Main() {
     const [text1, setText1] = useState("");
     const [text2, setText2] = useState("");
     const [isCompared, setIsCompared] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const [highlightedText1, setHighlightedText1] = useState([]);
     const [highlightedText2, setHighlightedText2] = useState([]);
 
     const handleCompare = () => {
-        setIsCompared(text1.length > 0 && text2.length > 0);
+        const isTextFilled = text1.length > 0 && text2.length > 0;
+
+        setIsCompared(isTextFilled);
+        setLoading(isTextFilled);
 
         if (!text1 && !text2) {
             return;
@@ -32,6 +37,14 @@ function Main() {
         setIsCompared(false);
         setText1("");
         setText2("");
+    };
+
+    const compearButtonHender = () => {
+        if (isCompared) {
+            reset();
+        } else {
+            handleCompare();
+        }
     };
 
     return (
@@ -59,34 +72,40 @@ function Main() {
                     </button>
                 </div>
 
-                <div className="textComparisonArea">
-                    {isCompared ? (
-                        <div> {highlightedText1}</div>
-                    ) : (
-                        <textarea
-                            placeholder="დაიწყე წერა..."
-                            value={text1}
-                            onChange={(e) => setText1(e.target.value)}
-                        />
-                    )}
-                    <img src={comparisonArrowIcon} alt="Compare text" />
+                {loading ? (
+                    <Loading start={loading} setLoading={setLoading} />
+                ) : (
+                    <div className="textComparisonArea">
+                        {isCompared ? (
+                            <div>{highlightedText1}</div>
+                        ) : (
+                            <textarea
+                                placeholder="დაიწყე წერა..."
+                                value={text1}
+                                onChange={(e) => setText1(e.target.value)}
+                            />
+                        )}
+                        <img src={comparisonArrowIcon} alt="Compare text" />
 
-                    {isCompared ? (
-                        <div> {highlightedText2}</div>
-                    ) : (
-                        <textarea
-                            placeholder="დაიწყე წერა..."
-                            value={text2}
-                            onChange={(e) => setText2(e.target.value)}
-                        />
-                    )}
-                </div>
+                        {isCompared ? (
+                            <div>{highlightedText2}</div>
+                        ) : (
+                            <textarea
+                                placeholder="დაიწყე წერა..."
+                                value={text2}
+                                onChange={(e) => setText2(e.target.value)}
+                            />
+                        )}
+                    </div>
+                )}
 
                 <button
                     className="compareButton"
-                    onClick={isCompared ? reset : handleCompare}
+                    onClick={compearButtonHender}
+                    disabled={loading ? true : false}
+                    style={loading ? { backgroundColor: "#383A4899" } : {}}
                 >
-                    {isCompared && <img src={tryagain} />}
+                    {!loading && isCompared && <img src={tryagain} />}
                     შედარება
                 </button>
             </div>
